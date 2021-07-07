@@ -1,0 +1,40 @@
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne">
+          Recruiter info
+        </button>
+      </h2>
+      <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div class="container-fluid py-4">
+            <div *ngIf="noRecruiters">
+              <h5>No recruiters to display!</h5>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                  <div class="col-xl-6">
+                    <div class="row">
+                     <div class="col-md-6" *ngFor="let recruiter of recruiters">
+                        <div class="card" style="width: 18rem;">
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Name: {{recruiter.firstName}} {{recruiter.lastName}}</li>
+                            <li class="list-group-item">Email: {{recruiter.email}}</li>
+                            <li class="list-group-item">Phone: {{recruiter.phone}}</li>
+                            <li class="list-group-item">Linkedin: {{recruiter.linkedin}}</li>
+                          </ul>
+                          <a class="btn btn-info">Recruiter</a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7 mt-4">          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,8 @@
+
+<div class="progress-title">
+    <h5>{{progressBarTitle}}</h5>
+</div>
+<div class="progress">
+    <div class="progress-bar" role="progressbar" [style.width]="progressBarStatus + '%'" [attr.aria-valuenow]="progressBarStatus" aria-valuemin="0" aria-valuemax="100">{{progressBarStatus}}%</div>
+</div>
+<div class="progress-status">{{applicationStatusMsg}}</div>

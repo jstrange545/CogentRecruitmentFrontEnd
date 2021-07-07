@@ -1,0 +1,141 @@
+<div class="card mt-4">
+    <h1 class="card-header">Cogent University Recruiters</h1>
+    <div class="card-body">
+        <br>
+        <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">LinkedIn</th>
+                <th scope="col">View Applicants</th>
+                <th scope="col">Assign Applicant</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let recruiter of recruiters">
+                    <th scope="row">{{ recruiter.id}}</th>
+                    <td>{{ recruiter.firstName}} {{ recruiter.lastName }}</td>
+                    <td>{{ recruiter.email }}</td>
+                    <td>{{ recruiter.phone }}</td>
+                    <td>{{ recruiter.linkedin }}</td>
+                    <td>    
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button class="myBtn"  (click)="openModal(recruiter,'recApplicants')">View</button>
+                        </div>  
+                    </td>
+                    <td>    
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button class="myBtn"  (click)="openModal(recruiter,'recAssign')">Assign</button>
+                        </div>  
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div #recApplicants class="view-modal">
+            <div class="modal-view-details" *ngIf="recruiters !== null && recruiters !== undefined">
+                <div class="container" *ngIf="currentSelectedRecruiter !== null && currentSelectedRecruiter !== undefined">
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <button (click)="closeModal()" style="float: right;">Close</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="alert alert-info">
+                        <strong>Viewing Applicants assigned to {{ currentSelectedRecruiter.firstName }} {{ currentSelectedRecruiter.lastName }}. Select one or more to unassign.</strong>
+                    </div>
+                    <br>
+                    <div class="table-responsive">
+                    <table class="table table-striped align-middle">
+                        <thead *ngIf="unassign==true">
+                            <tr>No assigned applicants!</tr>
+                        </thead>
+                        <thead *ngIf="unassign==false">
+                            <tr>
+                                <th scope="col">Application ID</th>
+                                <th scope="col">Job Name</th>
+                                <th scope="col">Applicant's Name</th>
+                                <th scope="col">Date of Application</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Unassign</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let application of recruiterApplications">
+                                <th scope="row">{{ application.id }}</th>
+                                <td>{{ application.job.name }}</td>
+                                <td>{{ application.users[0].firstName +" "+ application.users[0].lastName }}</td>
+                                <td>{{ application.dateCreated | date}}</td>
+                                <td>{{ application.users[0].phone }}</td>
+                                <td>{{ application.users[0].email }}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <button class="myBtn" (click)="unassignApplicant(application.id, currentSelectedRecruiter.id)">Unassign</button>
+                                    </div>  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div #recAssign class="view-modal">
+            <div class="modal-view-details" *ngIf="recruiters !== null && recruiters !== undefined">
+                <div class="container" *ngIf="currentSelectedRecruiter !== null && currentSelectedRecruiter !== undefined">
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <button (click)="closeModal()" style="float: right;">Close</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="alert alert-info">
+                        <strong>Viewing applicants not assigned to {{ currentSelectedRecruiter.firstName }} {{ currentSelectedRecruiter.lastName }}. Select one or more to assign.</strong>
+                    </div>
+                    <div class="table-responsive">
+                    <br>
+                    <table class="table table-striped align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">Application ID</th>
+                                <th scope="col">Job Name</th>
+                                <th scope="col">Applicant's Name</th>
+                                <th scope="col">Date of Application</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Assign</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let application of recruiterNonApplications">
+                                <th scope="row">{{ application.id }}</th>
+                                <td>{{ application.job.name }}</td>
+                                <td>{{ application.users[0].firstName +" "+ application.users[0].lastName }}</td>
+                                <td>{{ application.dateCreated | date}}</td>
+                                <td>{{ application.users[0].phone }}</td>
+                                <td>{{ application.users[0].email }}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <button class="myBtn"  (click)="assignApplicant(application.id, currentSelectedRecruiter.id)">Assign</button>
+                                    </div>  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

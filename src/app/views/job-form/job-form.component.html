@@ -1,0 +1,30 @@
+
+<br>
+<div class="container">
+    <form #jobForm="ngForm" (ngSubmit)="onSubmit(jobForm)" ngNativeValidate>
+      <div  ngModelGroup="job">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Job Title:</label>
+            <input class="form-control" type="text" aria-label="default input example" id="name" name="name"  ngModel required>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlSelect1" class="form-label">Batch No:</label>
+          <input class="form-control" type="number" aria-label="default input example" id="batch" name="batch" ngModel required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Description:</label>
+            <br>
+            <textarea id="description" name="description" rows="4" cols="50" ngModel required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlSelect1" class="form-label">Start Date:</label>
+          <input class="form-control" type="date" aria-label="default input example" id="datestart"  name="datestart" ngModel required>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlSelect1" class="form-label">No. of Vacancies:</label>
+          <input class="form-control" type="number" aria-label="default input example" id="vacancies" name="vacancies" ngModel required>
+        </div>
+      </div>
+        <input  class="btn btn-primary mb-3" type="submit" value="Submit" id="b1_submit" name="b1_submit">
+    </form>
+</div> 

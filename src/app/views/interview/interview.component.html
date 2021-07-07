@@ -1,0 +1,201 @@
+<!-- ********** Recruiter/Manager Interview Page **********-->
+<div class="card mt-4">
+    <!-- ******Post Interview Button****** -->
+    <div class="btn-group btn-group-sm" role="group">
+      <button class="myBtn"  (click)="openPostModal('post')">Schedule an Interview</button>
+    </div>
+
+    <!-- **************** Upcoming & completed Interviews************************ -->
+    <div class="card-body">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne">
+                Upcoming Interviews
+              </button>
+            </h2>
+            <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="container-fluid py-4">
+                  <div *ngIf="noIncInterviews">
+                    <h5>No upcoming interviews, check back later!</h5>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-xl-6">
+                          <div class="row" style="flex-wrap: nowrap;">
+                            <div class="col-md-6" *ngFor="let interviews of incInterview">
+                              <div class="card" style="width: 18rem;">
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item"><b>{{interviews.name}}</b></li>
+                                  <li class="list-group-item">Date: {{interviews.startTime | date}}</li>
+                                  <li class="list-group-item">Start time : {{interviews.startTime | date : 'shortTime'}}</li>
+                                  <li class="list-group-item">End time : {{interviews.endTime | date : 'shortTime'}}</li>
+                                </ul>
+                                <a class="btn btn-secondary" *ngIf="isRecruiter==true || isManager==true" (click)="openModal(interviews,'eval')">Interview Notes</a>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-7 mt-4">          
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Completed Interviews
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="container-fluid py-4">
+                  <div *ngIf="noComInterviews">
+                    <h5>No completed interviews, check back later!</h5> </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="row">
+                        <div class="col-xl-6">
+                          <div class="row" style="flex-wrap: nowrap;">
+                            <div class="col-md-6" *ngFor="let interviews of comInterview">
+                                <div class="card" style="width: 18rem;">
+                                  <ul class="list-group list-group-flush">
+                                  <li class="list-group-item"><b>{{interviews.name}}</b></li>
+                                  <li class="list-group-item">Date: {{interviews.startTime | date}}</li>
+                                  <li class="list-group-item">Start time : {{interviews.startTime | date : 'shortTime'}}</li>
+                                  <li class="list-group-item">End time : {{interviews.endTime | date : 'shortTime'}}</li>
+                                  </ul>
+                                  <a class="btn btn-primary" *ngIf="(isRecruiter==true)||(isManager==true)" (click)="openModal(interviews,'eval')">Evaluations</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-7 mt-4">
+                </div>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <br>
+          <br>
+    </div>
+    
+</div>
+
+<!-- *************************** Post Interview *********************************** -->
+<div #post class="view-modal">
+  <div class="post-view-details" *ngIf="applicant!=null && applicant!=undefined" style="text-align: center;margin-top: 5;">
+    
+    <div class="card mt-4">
+      <h3 class="card-header" style="background-color:#e7f1ff;">Schedule Interview</h3>  
+      <div class="card-body">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+          <h5 class="accordion-header" id="headingOne">
+            Interview for {{applicant.firstName}} {{applicant.lastName}}
+          
+          </h5>
+            <div id="collapseEva" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <form ngForm #postInterview="ngForm" (ngSubmit)="onSubmit(postInterview)" ngNativeValidate> 
+                    <label for="name" class="form-label">Name</label>
+                      <input class="form-control" type="text" id="name" name="name" ngModel required >
+                    <label for="name" class="form-label">Date</label>
+                      <input class="form-control" type="date" id="date" name="date" ngModel required>
+                    <label for="name" class="form-label">Start Time</label>
+                      <input class="form-control" type="time" id="startTime" name="startTime" ngModel required> 
+                    <label for="name" class="form-label">End Time</label>
+                      <input class="form-control" type="time" id="endTime" name="endTime" ngModel required> 
+                    <br>
+                  <div class="text-center">
+                      <input class="btn btn-primary me-md-2" type="submit" value="Submit" id="b1_submit" name="b1_submit" />
+                  </div>
+                
+                </form> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+            <button (click)="closeModal()" class="moldalBtn" style="float: right; margin-bottom:10px; margin-right: 10px;">Close</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<!-- ****************************************************************************** -->
+
+
+<!-- *************************** View Interview Evaluation ************************ -->
+<div class="modal-view-container">
+  <div #eval class="view-modal">
+    <div class="eval-view-details" >
+        <div>
+            <div class="row">
+                <div class="col">
+                    <button (click)="closeModal()" class="moldalBtn">Close</button>
+                </div>
+            </div>
+                <div id="accordion">
+                    <div class="card mt-4">
+                        <h1 class="card-header" >
+                            Interview Evaluation
+                        </h1>
+                        <div class="card-body" *ngFor='let intEvals of interviewEval; let i = index'>
+                            <div class="accordion">
+                                <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{i}}">
+                                  <button class="accordion-button" type="button" data-bs-toggle="collapse" attr.data-bs-target= "#collapse{{i}}" aria-expanded="false" attr.aria-bs-controls="collapse{{i}}">
+                                    {{intEvals.interview.name}}
+                                    <br>
+                                    By: {{intEvals.admin.firstName}} {{intEvals.admin.lastName}}
+                                </button>
+                                </h2>
+                                <div id= "collapse{{i}}" class="accordion-collapse collapse" attr.aria-labelledby="heading{{i}}" data-bs-parent="#accordion">
+                                    <div class="accordion-body" *ngIf="intEvals.pass==false">
+                                        <u>Results:</u>
+                                        <br> 
+                                        <b>Failed!</b> 
+                                    </div>
+                                    <div class="accordion-body" *ngIf="intEvals.pass!=false">
+                                      <u>Results:</u>
+                                      <br> 
+                                      <b>Passed!</b> 
+                                  </div>
+                                  <div class="accordion-body">
+                                    <u>Comments:</u>
+                                    <br>
+                                    {{intEvals.notes}} 
+                                  </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="interviewEval!=undefined && interviewEval!= null">
+              <app-interview-evaluation [interview]="currentInterview" (closeModal) = "closeModal()" ></app-interview-evaluation>
+          </div>
+    </div>
+  </div>
+</div>
+<!-- ****************************************************************************** -->

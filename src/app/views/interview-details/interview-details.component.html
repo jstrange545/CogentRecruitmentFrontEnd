@@ -1,0 +1,85 @@
+<br>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne">
+        Upcoming Interviews
+      </button>
+    </h2>
+    <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="container-fluid py-4">
+          <div *ngIf="noIncInterviews">
+            <h5>No upcoming interviews, check back later!</h5>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+                <div class="col-xl-6">
+                  <div class="row" style="flex-wrap: nowrap;">
+                    <div class="col-md-6" *ngFor="let interviews of incInterview">
+                      <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item"><b>{{interviews.name}}</b></li>
+                          <li class="list-group-item">Date: {{interviews.startTime | date}}</li>
+                          <li class="list-group-item">Start time : {{interviews.startTime | date : 'shortTime'}}</li>
+                          <li class="list-group-item">End time : {{interviews.endTime | date : 'shortTime'}}</li>
+                        </ul>
+                        <a class="btn btn-primary">Upcoming</a>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-7 mt-4">          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Completed Interviews
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="container-fluid py-4">
+          <div *ngIf="noComInterviews">
+            <h5>No completed interviews, check back later!</h5> </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="row" style="flex-wrap: nowrap;">
+                    <div class="col-md-6" *ngFor="let interviews of comInterview">
+                        <div class="card" style="width: 18rem;">
+                          <ul class="list-group list-group-flush">
+                          <li class="list-group-item"><b>{{interviews.name}}</b></li>
+                          <li class="list-group-item">Date: {{interviews.startTime | date}}</li>
+                          <li class="list-group-item">Start time : {{interviews.startTime | date : 'shortTime'}}</li>
+                          <li class="list-group-item">End time : {{interviews.endTime | date : 'shortTime'}}</li>
+                          </ul>
+                          <a class="btn btn-success">Completed</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-7 mt-4">
+          </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

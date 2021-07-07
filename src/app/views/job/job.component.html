@@ -1,0 +1,24 @@
+<div class="table-responsive">
+<div class="card mt-4">
+    <h1 class="card-header">Positions</h1>
+    <table class="table table-hover">
+        <tbody>
+            <tr *ngFor="let tempJob of jobs">
+                <td>
+                    <a class="nav-link active" aria-current="page" style="color: currentColor;" [routerLink]="['/jobs', tempJob.id]">
+                        {{ tempJob.name }}
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<div *ngIf="user!=null">
+    <div class="container" *ngIf="user.roles.includes(manRole)">
+        <a class="btn btn-secondary" aria-current="page" routerLink='/jobs/add'>
+            Post Job
+        </a>
+    </div>
+</div>
+</div>

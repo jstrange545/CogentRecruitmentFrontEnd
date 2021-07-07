@@ -1,0 +1,43 @@
+<div class="card mt-4" *ngFor="let tempJob of job">
+    <h1 class="card-header">{{ tempJob.name }}</h1>
+    <!--<div *ngIf="noApp$" class="alert alert-danger mt-3 mb-0">
+      <span>Please fill out a valid application to proceed with the hiring process.      <button type="button" class="btn btn-secondary" [routerLink]="['/applicant-portal/application']">Complete Application</button></span>
+    </div>
+    <div class="card-body" *ngIf="!(noApp$)">-->
+    <div class="card-body">
+        <h5>Description:</h5>
+            <br>
+            {{ tempJob.description }}
+            <br>
+            <br>
+            Start Date: {{ tempJob.datestart | date}}
+            <br>
+            
+            <ng-template [ngIf]="user!=null" [ngIfElse]="notloggedin">
+                <ng-template [ngIf]="user.roles.includes(role)">
+                    <div>
+                        <br>
+                        <button type="button" class="btn btn-secondary" aria-current="page" routerLink='/applicant-portal/application'> Apply Now</button>
+                    </div>
+                </ng-template>
+            </ng-template>
+            <ng-template [ngIf]="user.roles.includes(role2)">
+                <br>
+                <div>
+                    Vacancies: {{ tempJob.vacancies | number}}
+                </div>
+                <br>
+                <br>
+                <h4 class="card-header">Applications</h4>
+                    <div class="card-body">
+                        <app-application-table></app-application-table>
+                    </div>
+            </ng-template>
+            <ng-template #notloggedin>
+                <div>
+                    <br>
+                    <button type="button" class="btn btn-secondary" aria-current="page" routerLink='/applicant-portal/application'> Apply Now</button>
+                </div>
+            </ng-template>
+    </div>
+</div>

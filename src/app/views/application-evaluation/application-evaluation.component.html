@@ -1,0 +1,47 @@
+
+
+
+<div class="card mt-4">
+    <h3 class="card-header">New Application Evaluation for {{application.users[0].firstName + ' ' + application.users[0].lastName}}</h3>
+
+    <div class="card-body">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEva" aria-expanded="true" aria-controls="collapseEva">
+                    {{application.job.name + ' - Batch' + application.job.batch}}
+                </button>
+            </h2>
+            <div id="collapseEva" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <form ngForm #applicationEvaluation="ngForm" (ngSubmit)="onSubmit(applicationEvaluation)"> 
+                        <label for="notes" class="form-label">Comment</label>
+                    <textarea class="form-control" id="notes" name="notes" rows="10" cols="50" ngModel>Notes.</textarea>
+                    <br>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Status</label>
+                        </div>
+                        <select (change)="selectChangeHandler($event)" class="custom-select" id="inputGroupSelect01"> 
+                            <option value="none" selected disabled hidden>
+                                Choose...
+                            </option>
+                            <option value="Under_Review">Under Review</option>
+                            <option value="First_Stage">First Stage</option>
+                            <option value="Behavioral">Behavioral</option>
+                            <option value="Technical">Technical</option>
+                            <option value="Hired">Hired</option>
+                            <option value="Declined">Declined</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <input class="btn btn-primary me-md-2" type="submit" value="Submit" id="b1_submit" name="b1_submit" />
+                    </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

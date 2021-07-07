@@ -1,0 +1,31 @@
+<div class="card mt-4">
+    <h4 class="card-header">{{interview.name}}</h4>
+
+    <div class="card-body">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEva" aria-expanded="true" aria-controls="collapseEva">
+                    Interview Evaluation for {{interview.application.users[0].firstName + ' ' + interview.application.users[0].lastName}}
+                </button>
+            </h2>
+            <div id="collapseEva" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <form ngForm #interviewEvaluation="ngForm" (ngSubmit)="onSubmit(interviewEvaluation)"> 
+                        <label for="notes" class="form-label">Comments</label>
+                    <textarea class="form-control" id="notes" name="notes" rows="10" cols="50" ngModel required>Notes.</textarea>
+                        <p> 
+                        <input type="checkbox" id="passed" name="passed" ngModel/> 
+                         Check this box if {{interview.application.users[0].firstName}} Passed this round.
+                    </p>
+                    <div class="text-center">
+                        <input class="btn btn-primary me-md-2" type="submit" value="Submit" id="b1_submit" name="b1_submit" />
+                    </div>
+                    
+                    </form> 
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

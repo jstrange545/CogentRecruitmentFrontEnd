@@ -1,0 +1,69 @@
+<br>
+<div class="alert alert-info">
+  <strong>Select one or more fields to update.</strong>
+</div>
+<br>
+    <div class="container">
+       <form #appUpdate="ngForm" (ngSubmit)="onSubmit(appUpdate)" ngNativeValidate>
+        <div  ngModelGroup="application">
+          <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Location:</label>
+              <input class="form-control" type="text" aria-label="default input example" id="location" name="location"  ngModel>
+          </div>
+          <div class="mb-3">
+              <label for="exampleFormControlSelect1">US Citizen:</label>
+              <select class="form-select" name="uscitizen" ngModel>>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Visa Status:</label>
+            <div  class="form-text">Enter N/A, if not an international student.</div>
+            <input class="form-control" type="text" aria-label="default input example" id="visaStatus" name="visaStatus" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Degree:</label>
+            <input class="form-control" type="text" aria-label="default input example" id="degree" name="degree" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Core Java Rating:</label>
+            <input class="form-control" type="text" aria-label="default input example" id="coreJavaRating"  name="coreJavaRating" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Advanced Java Rating:</label>
+            <input class="form-control" type="text" aria-label="default input example" id="advancedJavaRating" name="advancedJavaRating" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">OOPs Rating:</label>
+            <input class="form-control" type="text" aria-label="default input example" id="oopsRating" name="oopsRating" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Exception Handling Rating:</label>
+            <input class="form-control" type="text" aria-label="default input example" id="exceptionHandlingRating" name="exceptionHandlingRating" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Multithreading Rating:</label>
+            <input class="form-control" type="text" aria-label="default input example" id="multithreadingRating" name="multithreadingRating" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Collection Framework Rating:</label>
+            <input class="form-control" type="text" aria-label="default input example" id="collectionFrameworkRating" name="collectionFrameworkRating" ngModel>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Jdbc Rating:</label>
+            <input class="form-control" type="text" aria-label="default input example" id="jdbcRating" name="jdbcRating" ngModel>
+          </div>
+        </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Upload Your Resume </label>
+            <app-file-upload id="resume" name="resume" ngModel required='required'></app-file-upload>
+          </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Upload Your Cover Letter (Optional)</label>
+            <app-file-upload id="coverletter" name="coverletter" ngModel></app-file-upload>
+          </div>
+          <input  class="btn btn-primary mb-3" type="submit" value="Submit" id="b1_submit" name="b1_submit">
+       </form>
+       <br>
+  </div> 

@@ -1,0 +1,217 @@
+   <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead *ngIf="unassign==true">
+                <tr>No assigned applications!</tr>
+            </thead>
+            <thead *ngIf="unassign==false">
+            <tr>
+                <th scope="col" *ngIf="isApplicant!=true">Application ID</th>
+                <th scope="col">Job Name</th>
+                <th scope="col">Applicant's Name</th>
+                <th scope="col">Date of Application</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Email</th>
+                <th scope="col">View</th>
+                <th scope="col" class="col-sm-1" *ngIf="isApplicant!=true">Evaluation</th>
+                <th scope="col" class="col-sm-1" >Interview</th>
+            </tr>
+            </thead>
+           
+            <tbody>
+                <tr *ngFor="let tempApplication of applications">
+                    <th scope="row" *ngIf="isApplicant!=true">{{ tempApplication.id}}</th>
+                    <td>{{ tempApplication.job.name}}</td>
+                    <td>{{ tempApplication.users[0].firstName +" "+ tempApplication.users[0].lastName}}</td>
+                    <td>{{ tempApplication.dateCreated | date}}</td>
+                    <td>{{ tempApplication.users[0].phone}}</td>
+                    <td>{{ tempApplication.users[0].email}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button class="btn btn-secondary"  (click)="openModal(tempApplication,'detals')">Details</button>
+                        </div>  
+                    </td>
+                    <td *ngIf="isApplicant!=true">
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button class="btn btn-secondary"  (click)="openModal(tempApplication,'eva')">Evaluation</button>
+                        </div>  
+                    </td>
+                    <td *ngIf="isApplicant==true">
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a class="btn btn-secondary" routerLink= "interview-details/{{tempApplication.id}}/12" routerLinkActive="active-link">Interview Details</a>
+                        </div>  
+                    </td>
+                    <td *ngIf="isApplicant!=true">
+                        <div class="btn-group btn-group-sm" role="group">
+                            <a class="btn btn-secondary" routerLink= "interview/{{tempApplication.id}}/{{tempApplication.users[0].id}}/12" routerLinkActive="active-link">Interview</a>
+                        </div>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-view-container">
+    <div #modalView class="view-modal">
+        <div class="modal-view-details" *ngIf="currentApplication!=undefined && currentApplication!= null">
+            <div class="container">
+                <div class="row" style="margin: 20px;">
+                    <h4>{{currentApplication.job.name + ' - Batch' + currentApplication.job.batch}}</h4>
+                    <h6 style="font-size: 14px;">applied on {{currentApplication.dateCreated}}</h6>
+                </div>
+                <div class="row" style="margin: 20px;">
+                  <div class="col">
+                     Applicant: {{currentApplication.users[0].firstName +" "+ currentApplication.users[0].lastName}}
+                  </div>
+                  <div class="col">
+                     Email: {{currentApplication.users[0].email}}
+                  </div>
+                </div>
+                <div class="row" style="margin: 20px;">
+                    <div class="col">
+                        Phone: {{currentApplication.users[0].phone}}
+                    </div>
+                    <div class="col">
+                        Linkedin: {{currentApplication.users[0].linkedin}}
+                    </div>
+                </div>
+                <div class="row" style="margin: 20px;">
+                    <div class="col">
+                        Location: {{currentApplication.location}}
+                    </div>
+                    <div class="col">
+                        Visa Status: {{currentApplication.visaStatus}}
+                    </div>
+                </div>
+                <div class="row" style="margin: 20px;">
+                    <div class="col">
+                        Degree: {{currentApplication.degree}}
+                    </div>
+                    <div class="col">
+                        US Citizen: {{currentApplication.uscitizen?'Yes':'No'}}
+                    </div>
+                </div>
+                <div class="row" style="margin: 20px;">
+                  <div class="col">
+                    <label for="floatingInputGrid" style="font-size: 15px;">Core Java</label>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width]="currentApplication.coreJavaRating*10 + '%'"
+                        [attr.aria-valuenow]="currentApplication.coreJavaRating*10" aria-valuemin="0" aria-valuemax="100">{{currentApplication.coreJavaRating}}</div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <label for="floatingInputGrid" style="font-size: 15px;">Advanced Java</label>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width]="currentApplication.advancedJavaRating*10 + '%'"
+                        [attr.aria-valuenow]="currentApplication.advancedJavaRating*10" aria-valuemin="0" aria-valuemax="100">{{currentApplication.advancedJavaRating}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="margin: 20px;">
+                    <div class="col">
+                        <label for="floatingInputGrid" style="font-size: 15px;">OOP</label>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width]="currentApplication.oopsRating*10 + '%'"
+                            [attr.aria-valuenow]="currentApplication.oopsRating*10" aria-valuemin="0" aria-valuemax="100">{{currentApplication.oopsRating}}</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="floatingInputGrid" style="font-size: 15px;">Exception Handling</label>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width]="currentApplication.exceptionHandlingRating*10 + '%'"
+                            [attr.aria-valuenow]="currentApplication.exceptionHandlingRating*10" aria-valuemin="0" aria-valuemax="100">{{currentApplication.exceptionHandlingRating}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin: 20px;">
+                    <div class="col">
+                        <label for="floatingInputGrid" style="font-size: 15px;">Multithreading</label>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width]="currentApplication.multithreadingRating*10 + '%'"
+                            [attr.aria-valuenow]="currentApplication.multithreadingRating*10" aria-valuemin="0" aria-valuemax="100">{{currentApplication.multithreadingRating}}</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="floatingInputGrid" style="font-size: 15px;">Collection Framework</label>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width]="currentApplication.collectionFrameworkRating*10 + '%'"
+                            [attr.aria-valuenow]="currentApplication.collectionFrameworkRating*10" aria-valuemin="0" aria-valuemax="100">{{currentApplication.collectionFrameworkRating}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin: 20px;">
+                    <div class="col-6">
+                        <label for="floatingInputGrid" style="font-size: 15px;">JDBC</label>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width]="currentApplication.jdbcRating*10 + '%'"
+                            [attr.aria-valuenow]="currentApplication.jdbcRating*10" aria-valuemin="0" aria-valuemax="100">{{currentApplication.jdbcRating}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin: 20px;">
+                    <div class="col">
+                       <button class="moldalBtn" style="float: left;" (click)="openDocModal('resume')" [disabled] ="docAvailability('Resume')">
+                            Resume
+                       </button>
+                       <button class="moldalBtn" style="float: left;" (click)="openDocModal('coverLetter')" [disabled] ="docAvailability('CoverLetter')">
+                            Cover Letter
+                       </button>
+                    </div>
+                    <div class="col">
+                       <button (click)="closeModal()" class="moldalBtn">Close</button>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    <!--application evaluation-->
+    <div #outsideElement>
+        <div #docView class="view-modal">
+            <div class="doc-view-details">
+                <p style="text-align: center;margin-top: 0; margin-bottom: 0">
+                    <object #em [data]= "dataURL()" class="objView"></object>
+                </p>
+            </div>
+        </div>
+        <div #eva class="view-modal">
+            <div class="eva-view-details" *ngIf="currentApplication!=undefined && currentApplication!= null">
+                <div class="row">
+                    <div class="col">
+                        <button (click)="closeModal()" class="moldalBtn">Close</button>
+                    </div>
+                </div>
+                <div class="row" *ngIf="applicationEvas.length==0">
+                    <app-application-evaluation [application]="currentApplication" (closeModal) = "closeModal()"></app-application-evaluation>
+                </div>
+                <div *ngIf="applicationEvas.length!=0">
+                    <div class="row" *ngIf="applicationEvas!=undefined && applicationEvas!= null">
+                    </div>
+                        <div id="accordion">
+                            <div class="card mt-4">
+                                <h1 class="card-header" *ngIf="applicationEvas!=undefined && applicationEvas!= null">
+                                    Current Stage: {{applicationEvas[applicationEvas.length-1].appStatus.stat.replace('_', " ")}}
+                                </h1>
+                                <div class="card-body" *ngFor='let applicationEva of applicationEvas; let i = index'>
+                                    <div class="accordion">
+                                        <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading{{i}}">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" attr.data-bs-target= "#collapse{{i}}" aria-expanded="false" attr.aria-bs-controls="collapse{{i}}">
+                                                {{applicationEva.appStatus.stat.replace('_', " ")}} <br> By: {{applicationEva.adm.firstName + ' ' + applicationEva.adm.lastName}}
+                                            </button>
+                                        </h2>
+                                        <div id= "collapse{{i}}" class="accordion-collapse collapse" attr.aria-labelledby="heading{{i}}" data-bs-parent="#accordion">
+                                            <div class="accordion-body">
+                                                {{applicationEva.notes}} 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row" *ngIf="applicationEvas.length!=0">
+                        <app-application-evaluation [application]="currentApplication" (closeModal) = "closeModal()"></app-application-evaluation>
+                </div>
+            </div>
+        </div>
+</div>

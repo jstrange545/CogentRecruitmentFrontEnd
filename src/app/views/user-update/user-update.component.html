@@ -1,0 +1,81 @@
+<br>
+<div class="container">
+    <br>
+    <h5 style="color: #063970;">Update Profile</h5>
+    <h6><strong>Select one or more fields to update.</strong></h6>
+    <br>
+    <form #profileUpdate="ngForm" (ngSubmit)="onSubmit(profileUpdate)" ngNativeValidate>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">First name</label>
+            <div class="mb-3">
+                <input class="form-control" type="text" aria-label="default input example" id="first_name" name="first_name" placeholder="{{user.firstName}}" ngModel />
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Last name</label>
+            <div class="mb-3">
+                <input class="form-control" type="text"  aria-label="default input example" id="last_name" name="last_name" placeholder="{{user.lastName}}" ngModel />
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Phone number</label>
+            <div class="mb-3">
+                <input class="form-control" type="text"  aria-label="default input example" id="phone" name="phone" placeholder="{{user.phone}}" ngModel />
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Password</label>
+            <div class="mb-3">
+                <input class="form-control" type="password"  aria-label="default input example" id="password" name="password" placeholder="******"  ngModel minlength=6 />
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Confirm password</label>
+            <div class="mb-3">
+                <input class="form-control" type="password"  aria-label="default input example" id="confirmPassword" name="confirmPassword" placeholder="******" ngModel minlength=6 />
+            <div *ngIf="passwordsDontMatch"><p style="color:red;">Passwords must match</p></div>
+        </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <label for="exampleFormControlInput1" class="form-label">Linkedin</label>
+            <div class="mb-3">
+                <input class="form-control" type="text"  aria-label="default input example" id="linkedin" name="linkedin" placeholder="{{user.linkedin}}" ngModel />
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <br>
+            <input class="btn btn-primary me-md-2" type="submit" value="Update" id="b1_submit" name="b1_submit" />
+        </div>
+        <div class="col"></div>
+    </div>
+    </form>
+    <br>
+</div>

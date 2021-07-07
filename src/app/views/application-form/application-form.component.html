@@ -1,0 +1,69 @@
+<br>
+<div class="alert alert-info">
+  <strong>Thank you for signing up! Please fill out the information below to submit your application.</strong>
+</div>
+<br>
+    <div class="container">
+       <form #appForm="ngForm" (ngSubmit)="onSubmit(appForm)" ngNativeValidate>
+        <div  ngModelGroup="application">
+          <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Location:</label>
+              <input class="form-control" type="text" aria-label="default input example" id="location" name="location"  ngModel required>
+          </div>
+          <div class="mb-3">
+              <label for="exampleFormControlSelect1">US Citizen:</label>
+              <select class="form-select" name="uscitizen" ngModel>>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Visa Status:</label>
+            <div  class="form-text">Enter N/A, if not an international student.</div>
+            <input class="form-control" type="text" aria-label="default input example" id="visaStatus" name="visaStatus" ngModel required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Degree:</label>
+            <input class="form-control" type="text" aria-label="default input example" id="degree" name="degree" ngModel required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Core Java Rating (1-10):</label>
+            <input class="form-control" type="number" aria-label="default input example" id="coreJavaRating"  name="coreJavaRating" ngModel required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Advanced Java Rating (1-10):</label>
+            <input class="form-control" type="number" aria-label="default input example" id="advancedJavaRating" name="advancedJavaRating" ngModel required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">OOPs Rating (1-10):</label>
+            <input class="form-control" type="number" aria-label="default input example" id="oopsRating" name="oopsRating" ngModel required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Exception Handling Rating (1-10):</label>
+            <input class="form-control" type="number" aria-label="default input example" id="exceptionHandlingRating" name="exceptionHandlingRating" ngModel required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Multithreading Rating (1-10):</label>
+            <input class="form-control" type="number" aria-label="default input example" id="multithreadingRating" name="multithreadingRating" ngModel required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Collection Framework Rating (1-10):</label>
+            <input class="form-control" type="number" aria-label="default input example" id="collectionFrameworkRating" name="collectionFrameworkRating" ngModel required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlSelect1">Jdbc Rating (1-10):</label>
+            <input class="form-control" type="number" aria-label="default input example" id="jdbcRating" name="jdbcRating" ngModel required>
+          </div>
+        </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Upload Your Resume </label>
+            <app-file-upload id="resume" name="resume" ngModel required='required'></app-file-upload>
+          </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Upload Your Cover Letter (Optional)</label>
+            <app-file-upload id="coverLetter" name="coverLetter" ngModel required=''></app-file-upload>
+          </div>
+          <input  class="btn btn-primary mb-3" type="submit" value="Submit" id="b1_submit" name="b1_submit">
+       </form>
+       <br>
+  </div> 

@@ -1,0 +1,21 @@
+  <nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+        <a class="navbar-brand" routerLink='/home'>Cogent University</a>
+        <a class="navbar-brand" routerLink='/home'>Home</a>
+        <a class="navbar-brand" *ngIf="isApplicant" routerLink='/applicant-portal'>Dashboard</a>
+        <a class="navbar-brand" *ngIf="isRecruiter && !isManager" routerLink='/recruiter-portal'>Dashboard</a>
+        <a class="navbar-brand" *ngIf="isManager" routerLink='/manager-portal'>Dashboard</a>
+        <a class="navbar-brand" routerLink='/jobs'>Programs</a>
+        <a class="navbar-brand" *ngIf="isManager" routerLink='/manager-portal/applicant-table'>Applicant Board</a>
+        <a class="navbar-brand" *ngIf="isManager" routerLink='/manager-portal/recruiter-table'>Recruiter Board</a>
+        <a class="navbar-brand" *ngIf="(loginStatus$ | async)" routerLink='/edit-profile'>Edit Profile</a>
+        <a class="navbar-brand" *ngIf="!(loginStatus$ | async)" routerLink='/login'>Login</a>
+        <a class="btn btn-primary" *ngIf="!(loginStatus$ | async)" routerLink='/register'>Sign Up</a>
+        <a class="btn btn-primary" *ngIf="(loginStatus$ | async)" (click)="logout()">Logout</a>
+    </div>
+  </nav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+

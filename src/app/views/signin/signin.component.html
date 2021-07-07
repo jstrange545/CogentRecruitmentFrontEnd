@@ -1,0 +1,79 @@
+<body>
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="alert alert-info">
+       <strong>Welcome, please enter your credentials to access your portal.</strong>
+    </div>
+    <div class="card">
+        <h4 class="card-header" style="text-align: center;">Login</h4>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <br>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}, please enter a valid email and password.</div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Yinka Enoch Adedokun">
+	<title>Login Page</title>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info">
+				<span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
+				<h4 class="company_title">Your Company Logo</h4>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+						<h2>Log In</h2>
+					</div>
+					<div class="row">
+						<form control="" class="form-group">
+							<div class="row">
+								<input type="text" name="username" id="username" class="form__input" placeholder="Username">
+							</div>
+							<div class="row">
+								<span class="fa fa-lock"></span>
+								<input type="password" name="password" id="password" class="form__input" placeholder="Password">
+							</div>
+							<div class="row">
+								<input type="checkbox" name="remember_me" id="remember_me" class="">
+								<label for="remember_me">Remember Me!</label>
+							</div>
+							<div class="row">
+								<input type="submit" value="Submit" class="btn">
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<p>Don't have an account? <a href="#">Register Here</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body> -->
